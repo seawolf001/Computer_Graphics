@@ -1,0 +1,133 @@
+\input{./headers}
+
+
+\usepackage[pdfauthor={Name}, pdftitle={Weekly}, pdfsubject={Week 1}, pdfkeywords={},colorlinks=true,urlcolor=black,linkcolor=black, citecolor=black]{hyperref}
+\usepackage{listings}
+\usepackage{subfig}
+\usepackage{graphicx}
+\lstset{%
+language=Matlab,
+frame=single,
+%numbers=left,
+%numberstyle=\footnotesize,
+%tabsize=2,
+keepspaces=true,
+columns=fullflexible,
+basicstyle=\ttfamily\scriptsize,
+keywordstyle=\color{blue}
+}
+
+
+\begin{document}
+
+\renewcommand{\labelitemi}{\textcolor{main}{\small $\blacktriangleright$}}
+\renewcommand{\labelitemii}{\textcolor{second}{\scriptsize \textbullet}}
+
+\titre{Week 1}{09/01/2017}
+
+\begin{enbref}
+\element{Title}
+\begin{itemize}
+\item Manual for OpenGL installation in Ubuntu\\
+\end{itemize}
+\medskip
+
+%\element{Problèmes rencontrés}
+%\begin{itemize}
+%\item Néant.
+%\end{itemize}
+\end{enbref}
+
+%\rubrique{Lectures}
+%Néant.
+%\element{\lu ... \cite{...}}
+
+\rubrique{Installing openGL in Ubuntu}
+
+The first step is to install the development libraries of OpenGL/Glut in Ubuntu:
+
+\begin{itemize}
+\item sudo apt-get install freeglut3 freeglut3-dev\\
+\item sudo apt-get install binutils-gold\\
+\end{itemize}
+
+
+\rubrique{code in openGL}
+\begin{lstlisting}
+#include <GL/glut.h>
+
+void init2D(float r, float g, float b)
+{
+	glClearColor(r,g,b,0.0);  
+	glMatrixMode (GL_PROJECTION);
+	gluOrtho2D (0.0, 200.0, 0.0, 150.0);
+}
+
+void display(void)
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+	glColor3f(0.0, 1.0, 1.0);
+
+	//draw two points
+	glBegin(GL_POINTS);
+	for(int i = 0; i < 10; i++)
+	{
+		glVertex2i(10+5*i,110);
+	}
+	glEnd();
+
+	//draw a line
+	glBegin(GL_LINES);
+		glVertex2i(10,10);
+		glVertex2i(100,100);
+	glEnd();
+
+	glFlush();
+}
+
+void main(int argc,char *argv[])
+{
+	glutInit(&argc,argv);
+	glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowSize (500, 500);
+	glutInitWindowPosition (100, 100);
+	glutCreateWindow ("points and lines");
+	init2D(0.0,0.0,0.0);
+	glutDisplayFunc(display);
+	glutMainLoop();
+}
+\end{lstlisting}
+\begin{figure}
+
+\includegraphics[scale=0.5]{abc}
+\caption{example for OpenGL}
+\end{figure}
+
+\rubrique{code in matlab}
+\begin{lstlisting}
+y1 = sin(x.^2);
+y2 = cos(x.^2);
+plot(x,y1,x,y2)
+\end{lstlisting}
+
+
+\begin{figure}
+
+\includegraphics[scale=0.5]{def}
+\caption{example for matlab}
+\end{figure}
+
+
+
+%\bibliographystyle{apalike2}
+%\bibliography{../../ref}
+
+%\begin{thebibliography}{1}
+
+%\bibitem{Roddier}
+%N.~A.~Roddier, Atmospheric wavefront simulation using Zernike polynomials, \emph{Optical Engineering} 29, 1174, 1990.
+
+%\end{thebibliography}
+
+
+\end{document}

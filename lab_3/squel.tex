@@ -1,0 +1,246 @@
+\input{./headers}
+
+
+\usepackage[pdfauthor={Name}, pdftitle={Weekly}, pdfsubject={Week 1}, pdfkeywords={},colorlinks=true,urlcolor=black,linkcolor=black, citecolor=black]{hyperref}
+\usepackage{listings}
+\usepackage{subfig}
+\usepackage{graphicx}
+\lstset{%
+language=Matlab,
+frame=single,
+%numbers=left,
+%numberstyle=\footnotesize,
+%tabsize=2,
+keepspaces=true,
+columns=fullflexible,
+basicstyle=\ttfamily\scriptsize,
+keywordstyle=\color{blue}
+}
+
+
+\begin{document}
+
+\renewcommand{\labelitemi}{\textcolor{main}{\small $\blacktriangleright$}}
+\renewcommand{\labelitemii}{\textcolor{second}{\scriptsize \textbullet}}
+
+\titre{Week 3}{05/01/2017}
+
+\begin{enbref}
+\element{Title}
+\begin{itemize}
+\item Draw a circle in OpenGL and Matlab using:\\
+1). Bresenham’s mid-point circle Drawing Algorithm
+\end{itemize}
+\medskip
+
+%\element{Problèmes rencontrés}
+%\begin{itemize}
+%\item Néant.
+%\end{itemize}
+\end{enbref}
+
+%\rubrique{Lectures}
+%Néant.
+%\element{\lu ... \cite{...}}
+
+\rubrique{Procedure}
+\vspace{0.5mm} \flushleft
+
+\element {OpenGL}
+
+\vspace{0.5mm} \flushleft
+1). Draw a circle using Bresenhams mid point Algorithm.
+\begin{itemize}
+\item Create a C file and name it as \textit{circleBresenhams.c}.
+
+\item Define global variables to store coordinates of center and radius of a circle .
+
+\item Following is the Bresenham Algorithm to draw circle in 1st octant:
+
+\begin{lstlisting}
+while x < y
+	if (d < 0)
+	   d += 4*x + 6;
+	else 
+	   d += 4*(x-y) + 10;
+	   y--;
+	end
+	x++;
+end \\
+
+
+extend this to other octants. please see code
+\end{lstlisting}
+
+\item Following is the final code for Bresenhams circle drawing algorithms:
+\begin{lstlisting}
+#include <stdio.h>
+#include <math.h>
+#include <GL/glut.h>
+
+int centre_x = 0 ; int centre_y=0 ; int radius =0 ;
+int n = 0 ;
+int x_coordinate[1000];
+int y_coordinate[1000];
+
+void displayCircle(void)
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+       
+        int d = 3-2*radius;
+	int x = 0, y = radius; 
+	putPixels(centre_x, centre_y, x, y);
+	
+	while (x < y)
+	{
+		if (d < 0)
+		{
+		   d += 4*x + 6;
+		}
+		else 
+		{
+		   d += 4*(x-y) + 10;
+		   y--;
+		}
+		x++;
+		putPixels(centre_x, centre_y, x, y);
+	}
+    	int i;
+    	for (i = 0; i < n; i++ )
+    	{
+		glBegin(GL_POINTS);
+		glColor3f(1.0, 1.0, 1.0);
+		//printf("x : %d y : %d\n", x_coordinate[i], y_coordinate[i]);
+		glVertex2f(x_coordinate[i]/100.0, y_coordinate[i]/100.0);
+		glEnd();
+	}
+    	glFlush();
+}
+
+void putPixels(int X, int Y, int P, int Q )
+{
+	x_coordinate[n] = X + P;
+	y_coordinate[n++] = Y + Q;
+
+	x_coordinate[n] = X - P;
+	y_coordinate[n++] = Y + Q;
+
+	x_coordinate[n] = X + P;
+	y_coordinate[n++] = Y - Q;
+
+	x_coordinate[n] = X - P; 
+	y_coordinate[n++] = Y - Q;
+
+	x_coordinate[n] = X + Q;
+	y_coordinate[n++] = Y + P;
+
+	x_coordinate[n] = X - Q; 
+	y_coordinate[n++] = Y + P;
+
+	x_coordinate[n] = X + Q; 
+	y_coordinate[n++] = Y - P;
+
+	x_coordinate[n] = X - Q;
+	y_coordinate[n++] = Y - P;
+}
+int main(int argc, char const *argv[])
+{
+	printf("centre coordinates : ");
+	scanf("%d  %d", &centre_x , &centre_y);
+	printf("radius of circle   : ");
+	scanf("%d",&radius);
+
+	glutInit(&argc, argv);
+        glutInitDisplayMode(GLUT_RGB);
+        glutInitWindowSize(640,480);
+        glutCreateWindow("Bresenham Circle Drawing Algorithm");
+        glutInitWindowPosition(100,100);
+        glutDisplayFunc(displayCircle);
+        glutMainLoop();
+	return 0;
+}
+\end{lstlisting}
+
+\vspace{0.5mm}
+
+\item Compile and run the executable file in terminal by typing in the following commands : \\
+
+\vspace{0.5mm} \flushleft
+
+\textit{(a)\hspace{2mm} gcc circleBresenhams.c -lGL -lGLU -lglut -lm} \\
+\textit{(b)\hspace{2mm} ./a.out}
+\vspace*{1\baselineskip} 
+\end{itemize}
+
+\element {MatLab}\\
+
+1). Draw a circle using Bresenham’s Line Drawing Algorithm:
+
+\begin{itemize}
+
+\item Open a new Script and contruct a function circle(). The script prompts user for inputs center and radius coordinates.
+
+\item Following is the Matlab Script Code for Bresenham’s circle Drawing Algorithm :
+\begin{lstlisting}
+
+function [] = circle()
+	x_centre = input("enter the x coordinate of circle : ");
+	y_centre = input("enter the x coordinate of circle : ");
+	radius = input("enter the radius of circle : ");
+
+	d = 3-2*radius;
+	x = 0, y = radius;
+	px = [x];
+	py = [y];
+
+	while x < y
+		if (d < 0)
+		   d += 4*x + 6;
+		else 
+		   d += 4*(x-y) + 10;
+		   y--;
+		end
+		x++;
+		
+		px = cat(1,px,round(x_centre+x));
+		py = cat(1,py,round(y_centre+y));
+
+		px = cat(1,px,round(x_centre-x));
+		py = cat(1,py,round(y_centre+y));
+		
+		px = cat(1,px,round(x_centre+x));
+		py = cat(1,py,round(y_centre-y));
+		
+		px = cat(1,px,round(x_centre-x));
+		py = cat(1,py,round(y_centre-y));
+		
+		px = cat(1,px,round(x_centre+y));
+		py = cat(1,py,round(y_centre+x));
+		
+		px = cat(1,px,round(x_centre-y));
+		py = cat(1,py,round(y_centre+x));
+		
+		px = cat(1,px,round(x_centre+y));
+		py = cat(1,py,round(y_centre-x));
+		
+		px = cat(1,px,round(x_centre-y));
+		py = cat(1,py,round(y_centre-x));
+		
+	end
+	plot(px,py,'-*');
+\end{lstlisting}
+\end{itemize}
+
+\rubrique{Output}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=60mm, height=60mm]{circleOpenGL.png}
+\caption{Draw circle using bresenhams mid point algo in OpenGL \label{overflow}}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=60mm, height=60mm]{circleMatLab.png}
+\caption{Draw circle using bresenhams mid point algo in  matlab \label{overflow}}
+\end{figure}
+\end{document}

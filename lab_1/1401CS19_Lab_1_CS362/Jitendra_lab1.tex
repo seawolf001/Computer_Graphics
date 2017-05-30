@@ -1,0 +1,59 @@
+\input{./headers}
+
+\usepackage[pdfauthor={Name}, pdftitle={Weekly}, pdfsubject={Week 1}, pdfkeywords={},colorlinks=true,urlcolor=black,linkcolor=black, citecolor=black]{hyperref}
+\usepackage{listings}
+\usepackage{subfig}
+\lstset{%
+language=Matlab,
+frame=single,
+%numbers=left,
+%numberstyle=\footnotesize,
+%tabsize=2,
+keepspaces=true,
+columns=fullflexible,
+basicstyle=\ttfamily\scriptsize,
+keywordstyle=\color{blue}
+}
+
+
+\begin{document}
+
+\renewcommand{\labelitemi}{\textcolor{main}{\small $\blacktriangleright$}}
+\renewcommand{\labelitemii}{\textcolor{second}{\scriptsize \textbullet}}
+
+\titre{Week 1}{09/01/2017}
+
+\begin{enbref}
+\element{How to install OpenGL in Windows 10}
+\begin{itemize}
+
+\item OpenGL v1.1 software runtime is included as part of operating system for WinXP, Windows 2000, Windows 98, Windows 95 (OSR2) and Windows NT. the OpenGL v1.1 libraries are also available as the selfextracting archive file from the Microsoft website, via this url: "http://download.microsoft.com/download/win95upg/info/1/W95/EN-US/Opengl95.exe"
+\item Download GLUT. It is avaliable for free from url:
+"http://www.xmission.com/~nate/glut/glut-3.7.6-bin.zip"
+\item Copy files from extracted folder to the following destinations:
+\begin{itemize}
+\item glut32.dll to Windows-wide common files folder, most probably System folder
+\item glut32.lib to lib file of the VC98 folder included in the PATH
+\item glut.h to include/GL file of the VC98 folder included in the PATH
+\end{itemize}
+\item OpenGL - GLUT has successfully been installed on windows. To test the installation, add \#include "GL/glut.h" to header of C++ program and compile it. Successful formation of object file of the program proves that OpenGL is running on the subsystem.
+\end{itemize}
+\medskip
+
+
+\element{How to install Matlab in Windows 10}
+\begin{itemize}
+\item Download the setup file avaliable at "www.in.mathworks.com"
+\item Run the installer by clicking on .exe file
+\item Select "Install using File Installation Key" option. This avoids usage of internet during installation
+\item Specify file installation key in the field given.
+\item Specify the installation folder and features to install which are available as a list. Make sure that \\
+disk on which matlab is supposed to install, has enough space.
+\item Press Install option. This will install Matlab to local computer.d{itemize}
+\end{itemize}
+\end{enbref}
+
+\rubrique{Attachments}
+The source code of plots by opengl and matlab has been included the src folder of the zip file. "opengltest.png" refers to the screenshot of plot by opengl and "matlabtest.png" refers to the screenshot of plot by matlab. Both of them are included in the 
+output-screenshots folder.
+\end{document}

@@ -1,0 +1,77 @@
+\input{./headers}
+
+\usepackage[pdfauthor={Name}, pdftitle={Weekly}, pdfsubject={Week 1}, pdfkeywords={},colorlinks=true,urlcolor=black,linkcolor=black, citecolor=black]{hyperref}
+\usepackage{listings}
+\usepackage{subfig}
+\lstset{%
+language=Matlab,
+frame=single,
+%numbers=left,
+%numberstyle=\footnotesize,
+%tabsize=2,
+keepspaces=true,
+columns=fullflexible,
+basicstyle=\ttfamily\scriptsize,
+keywordstyle=\color{blue}
+}
+
+
+\begin{document}
+
+\renewcommand{\labelitemi}{\textcolor{main}{\small $\blacktriangleright$}}
+\renewcommand{\labelitemii}{\textcolor{second}{\scriptsize \textbullet}}
+
+\titre{Week 1}{12/01/2016}
+
+\begin{enbref}
+\element{Title}
+\begin{itemize}
+\item Manual for OpenGL installation in Ubuntu/ Windows.\\
+\end{itemize}
+\medskip
+
+%\element{Problèmes rencontrés}
+%\begin{itemize}
+%\item Néant.
+%\end{itemize}
+\end{enbref}
+
+%\rubrique{Lectures}
+%Néant.
+%\element{\lu ... \cite{...}}
+
+\rubrique{Modèles et développements théoriques}
+Néant.
+
+\rubrique{Grandes idées}
+Néant.
+
+\rubrique{Rédaction}
+Néant
+
+\rubrique{Intéractions}
+Néant.
+
+\rubrique{Divers}
+Néant
+
+\rubrique{A venir...}
+\begin{itemize}
+\item Implement Shanon and B-L wavelet filters.
+\item Once it is done, framework for performing experiments to reconstruct the phase will be ready.
+%\item Start working on the new reconstruction method for phase data.
+%\item Prepare for the meeting with Thierry Fusco.
+\end{itemize}
+
+%\bibliographystyle{apalike2}
+%\bibliography{../../ref}
+
+%\begin{thebibliography}{1}
+
+%\bibitem{Roddier}
+%N.~A.~Roddier, Atmospheric wavefront simulation using Zernike polynomials, \emph{Optical Engineering} 29, 1174, 1990.
+
+%\end{thebibliography}
+
+
+\end{document}

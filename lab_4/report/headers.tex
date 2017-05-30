@@ -1,0 +1,83 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[frenchb]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsfonts, amsmath, amssymb, amsthm, dsfont, amsthm}
+\usepackage{a4wide}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz} 
+\usetikzlibrary{arrows,positioning,shapes}
+
+\title{\textbf{Lab Report} \\ Week of 09/02/2017}
+%\author{Olivier \textsc{Mangin}}
+%\date{\today}
+
+\definecolor{main}{named}{BurntOrange}
+\definecolor{second}{named}{RoyalBlue}
+%\newcommand{\maincolor}{orange}
+%\newcommand{\secondcolor}{orange!20}
+\newcommand{\strong}[1]{\textcolor{main}{\textbf{#1}}}
+\newcommand{\stronger}[1]{\textcolor{second}{\textbf{#1}}}
+\newcommand{\colored}[1]{\textcolor{main}{#1}}
+
+% Affichage du titre avec les numéro et date de la semaine
+\newcommand{\titre}[2]{
+\noindent
+\hspace{-10pt}
+\begin{tabular}{lr}
+  \hspace{0.58\textwidth} & \hspace{0.4\textwidth} \\
+  \strong{\huge Lab Report} & \textbf{\Large #1} \medskip \\
+  \textbf{\Large Jitendra Kumar , 1401CS19} & {\large #2} ~\\
+\end{tabular}
+
+\vspace{20pt}
+}
+
+% Encadré ``En bref'' réumant les avancées et problèmes de la semaine
+\newenvironment{enbref}{
+\noindent\fcolorbox{main}{main}{
+\begin{minipage}{\textwidth}
+\textcolor{white}{\textbf{\large }}
+\end{minipage}
+} \\
+
+}{
+\begin{center}
+  \strong{ \rule[2mm]{\textwidth}{3pt} }
+\end{center}
+\vspace*{-20pt}
+}
+
+% Affichage d'un titre de rubrique
+\newcommand{\rubrique}[1]{
+  \bigskip
+  \begin{center}
+  \begin{minipage}{\textwidth}
+    \noindent\strong{{\large #1} \\
+      \rule[2mm]{\textwidth}{1pt} }
+  \end{minipage}
+  \end{center}
+  \vspace*{-20pt}
+}
+
+% Symbole utilisé en début de ligne des éléments
+\newcommand{\doublerect}{
+\begin{tikzpicture}
+  \fill[color=main] (0,0) rectangle (4pt,-4pt);
+  \fill[color=second] (2pt,-2pt) rectangle (6pt,-6pt);
+\end{tikzpicture}
+}
+
+% Affichage d'un titre d'élément
+\newcommand{\element}[1]{
+  \medskip
+  \noindent\textcolor{second}{ \doublerect \textbf{#1}}
+}
+
+% Pour les lectures, petit raccourci pour mettre en avant le niveau
+% de lecture d'un article.
+\newcommand{\lu}{\strong{[Lu]} }
+\newcommand{\parcouru}{\strong{[Parcouru]} }
+\newcommand{\alire}{\strong{[A lire]} }
+\newcommand{\presentation}{\strong{[Présentation]} }
+\newcommand{\keynote}{\strong{[Keynote]} }
